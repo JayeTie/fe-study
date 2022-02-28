@@ -223,42 +223,60 @@
 			注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常。
 
 - webSocket如何兼容低浏览器？(阿里)
-		Adobe Flash Socket 、
-		ActiveX HTMLFile (IE) 、
-		基于 multipart 编码发送 XHR 、
-		基于长轮询的 XHR
+
+		Adobe Flash Socket、ActiveX HTMLFile (IE)、基于长轮询的 XHR
 
 - 页面可见性（Page Visibility API） 可以有哪些用途？
+
 		通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;
+
 		在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；
 
 - 如何在页面上实现一个圆形的可点击区域？
+
 		（1）map+area或者svg
+
 		（2）border-radius
+
 		（3）纯js实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等
 
 - 实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
+
 		<div style="height:1px;overflow:hidden;background:red"></div>
 
 - 网页验证码是干嘛的，是为了解决什么安全问题。
+
 		区分用户是计算机还是人的公共全自动程序。可以防止恶意破解密码、刷票、论坛灌水；
+
 		有效防止黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试。
 
 - title与h1的区别、b与strong的区别、i与em的区别？
+
 		title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取也有很大的影响；
+
 		strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时：<strong>会重读，而<B>是展示强调内容。
+
 		i内容展示为斜体，em表示强调的文本； 
+
 		Physical Style Elements -- 自然样式标签
+
 		b, i, u, s, pre
+
 		Semantic Style Elements -- 语义样式标签
+
 		strong, em, ins, del, code
+
 		应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。
 
 ## <a name='css'>CSS</a>
+
 - 介绍一下标准的CSS的盒子模型？低版本IE的盒子模型有什么不同的？
-		（1）有两种， IE 盒子模型、W3C 盒子模型；
-		（2）盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border)；
-		（3）区  别： IE的content部分把 border 和 padding计算了进去;
+	
+	（1）有两种， IE 盒子模型、W3C 盒子模型；
+	
+	（2）盒模型： 内容(content)、填充(padding)、 边框(border)、边界(margin)；
+	
+	（3）区  别： IE的content部分把 border 和 padding计算了进去;
 
 - CSS选择符有哪些？哪些属性可以继承？
   	* 选择器
