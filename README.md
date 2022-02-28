@@ -59,44 +59,75 @@
 		参考: http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements
 
 - 页面导入样式时，使用link和@import有什么区别？
+
 		（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+
 		（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
-		（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;		 
+
+		（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;	
+
 		（4）link支持使用js控制DOM去改变样式，而@import不支持;
 
 - 介绍一下你对浏览器内核的理解？
+
 		主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。
+
 		最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。
+
 		1）渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
+
 		2）JS引擎则：解析和执行javascript来实现网页的动态效果。
 
 - 常见的浏览器内核有哪些？
+
 		Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
+
 		Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
+
 		Presto内核：Opera7及以上。[Opera内核原为：Presto，现为：Blink;]
+
 		Webkit内核：Safari,Chrome等。[Chrome的：Blink（WebKit的分支）]
+
 		详细文章：[浏览器内核的解析和对比](http://www.cnblogs.com/fullhouse/archive/2011/12/19/2293455.html)
 
 - html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+
     * HTML5现在已经不是SGML的子集，主要是关于图像，位置，存储，多任务等功能的增加。
-  			绘画canvas;
-  			用于媒介回放的video和audio元素;
-  			本地离线存储：
-  					localStorage长期存储数据，浏览器关闭后数据不丢失;
-  					sessionStorage 的数据在浏览器关闭后自动删除;
-  			语意化更好的内容元素，比如 article、footer、header、nav、section;
-  			表单控件，calendar、date、time、email、url、search;
-  			新的技术webworker, websocket, Geolocation;
-  			移除的元素：
-  					纯表现的元素：basefont，big，center，font, s，strike，tt，u;
-  					对可用性产生负面影响的元素：frame，frameset，noframes；
+
+			绘画canvas;
+
+			用于媒介回放的video和audio元素;
+
+			本地离线存储：
+
+				localStorage长期存储数据，浏览器关闭后数据不丢失;
+
+				sessionStorage 的数据在浏览器关闭后自动删除;
+
+			语意化更好的内容元素，比如 article、footer、header、nav、section;
+
+			表单控件，calendar、date、time、email、url、search;
+
+			新的技术webworker, websocket, Geolocation;
+
+			移除的元素：
+
+				纯表现的元素：basefont，big，center，font, s，strike，tt，u;
+				
+				对可用性产生负面影响的元素：frame，frameset，noframes；
+
     * 支持HTML5新标签：
-  			IE8/IE7/IE6支持通过document.createElement方法产生的标签，
-  			可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。
-  			当然也可以直接使用成熟的框架、比如html5shim;
-  			<!--[if lt IE 9]>
-  			<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
-  			<![endif]-->
+
+			IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。
+
+			当然也可以直接使用成熟的框架、比如html5shim;
+
+			<!--[if lt IE 9]>
+
+			<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+
+			<![endif]-->
+
   	* 如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素
 
 - HTML5的离线储存怎么使用，工作原理能不能解释一下？
