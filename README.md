@@ -190,6 +190,7 @@
 			cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭
 
 - iframe有那些缺点？
+
 		（1）iframe会阻塞主页面的Onload事件；
 
 		（2）搜索引擎的检索程序无法解读这种页面，不利于SEO;
@@ -272,329 +273,568 @@
 
 - 介绍一下标准的CSS的盒子模型？低版本IE的盒子模型有什么不同的？
 	
-	（1）有两种， IE 盒子模型、W3C 盒子模型；
-	
-	（2）盒模型： 内容(content)、填充(padding)、 边框(border)、边界(margin)；
-	
-	（3）区  别： IE的content部分把 border 和 padding计算了进去;
+		（1）有两种， IE 盒子模型、W3C 盒子模型；
+		
+		（2）盒模型： 内容(content)、填充(padding)、 边框(border)、边界(margin)；
+		
+		（3）区  别： IE的content部分把 border 和 padding计算了进去;
 
 - CSS选择符有哪些？哪些属性可以继承？
-  	* 选择器
-				1.id选择器（ # myid）
-				2.类选择器（.myclassname）
-				3.标签选择器（div, h1, p）
-				4.相邻选择器（h1 + p）
-				5.子选择器（ul > li）
-				6.后代选择器（li a）
-				7.通配符选择器（ * ）
-				8.属性选择器（a[rel = "external"]）
-				9.伪类选择器（a:hover, li:nth-child）
+
+    * 选择器
+
+			1.id选择器（ # myid）
+
+			2.类选择器（.myclassname）
+
+			3.标签选择器（div, h1, p）
+
+			4.相邻选择器（h1 + p）
+
+			5.子选择器（ul > li）
+
+			6.后代选择器（li a）
+
+			7.通配符选择器（ * ）
+
+			8.属性选择器（a[rel = "external"]）
+
+			9.伪类选择器（a:hover, li:nth-child）
+
   	* 可继承的样式： font-size font-family color, UL LI DL DD DT;
+
   	* 不可继承的样式：border padding margin width height ;
 
 - CSS优先级算法如何计算？
+  
   * 优先级就近原则，同权重情况下样式定义最近者为准;
+  
   * 载入样式以最后载入的定位为准;
+
 	* 优先级为:
+  
 			同权重: 内联样式表（标签内部）> 嵌入样式表（当前文件中）> 外部样式表（外部文件中）。
+
 			!important >  id > class > tag
+
 			important 比 内联优先级高
-	* 权重规则：标签的权重为1，class的权重为10，id的权重为100
+
+	* 权重规则：标签的权重为1，class的权重为10，id的权重为100，如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现
+
 		/*权重为1*/
 		div{}
+
 		/*权重为10*/
 		.class1{}
+
 		/*权重为100*/
 		#id1{}
+
 		/*权重为100+1=101*/
 		#id1 div{}
+
 		/*权重为10+1=11*/
 		.class1 div{}
+
 		/*权重为10+10+1=21*/
 		.class1 .class2 div{}
-		如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现
 
 - CSS3新增伪类有那些？
+  
 	p:first-of-type	选择属于其父元素的首个 <p> 元素的每个 <p> 元素。
+
 	p:last-of-type	选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
+
 	p:only-of-type	选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
+
 	p:only-child		选择属于其父元素的唯一子元素的每个 <p> 元素。
+
 	p:nth-child(2)	选择属于其父元素的第二个子元素的每个 <p> 元素。
+
 	::after			在元素之前添加内容,也可以用来做清除浮动。
+
 	::before		在元素之后添加内容
-	:enabled  		
+
+	:enabled    控制表单控件的可用状态
+
 	:disabled 	控制表单控件的禁用状态。
+
 	:checked    单选框或复选框被选中。
 
 - 如何居中div？
+
 	* 水平居中：给div设置一个宽度，然后添加margin:0 auto属性
-		div {
-			width:200px;
-			margin:0 auto;
-		}
+
+			div {
+
+				width:200px;
+
+				margin:0 auto;
+
+			}
+
 	* 让绝对定位的div居中
+		
+			div {
+
+				position: absolute;
+
+				width: 300px;
+
+				height: 300px;
+
+				margin: auto;
+
+				top: 0;
+
+				left: 0;
+
+				bottom: 0;
+
+				right: 0;
+
+				background-color: pink;	/* 方便看效果 */
+
+			}
+
+	* 水平垂直居中一：确定容器的宽高，设置层的外边距
+		
+			div {
+
+				position: relative;		/* 相对定位或绝对定位均可 */
+
+				width:500px;
+
+				height:300px;
+
+				top: 50%;
+
+				left: 50%;
+
+				margin: -150px 0 0 -250px;     	/* 外边距为自身宽高的一半 */
+
+				background-color: pink;	 	/* 方便看效果 */
+
+			}
+
+	* 水平垂直居中二：未知容器的宽高，利用 `transform` 属性
+		
 		div {
-			position: absolute;
-			width: 300px;
-			height: 300px;
-			margin: auto;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background-color: pink;	/* 方便看效果 */
-		}
-	* 水平垂直居中一
-		确定容器的宽高，设置层的外边距
-		div {
-			position: relative;		/* 相对定位或绝对定位均可 */
-			width:500px;
-			height:300px;
-			top: 50%;
-			left: 50%;
-			margin: -150px 0 0 -250px;     	/* 外边距为自身宽高的一半 */
-			background-color: pink;	 	/* 方便看效果 */
-		}
-	* 水平垂直居中二
-		未知容器的宽高，利用 `transform` 属性
-		div {
+
 			position: absolute;		/* 相对定位或绝对定位均可 */
+
 			width:500px;
+
 			height:300px;
+
 			top: 50%;
+
 			left: 50%;
+
 			transform: translate(-50%, -50%);
+
 			background-color: pink;	 	/* 方便看效果 */
-		}
-	* 水平垂直居中三
-		利用 flex 布局（实际使用时应考虑兼容性）
-		.container {
-			display: flex;
-			align-items: center; 		/* 垂直居中 */
-			justify-content: center;	/* 水平居中 */
 
 		}
-		.container div {
-			width: 100px;
-			height: 100px;
-			background-color: pink;		/* 方便看效果 */
-		}  
+
+	* 水平垂直居中三：利用 flex 布局（实际使用时应考虑兼容性）
+		
+			.container {
+
+				display: flex;
+
+				align-items: center; 		/* 垂直居中 */
+
+				justify-content: center;	/* 水平居中 */
+
+			}
+
+			.container div {
+
+				width: 100px;
+
+				height: 100px;
+
+				background-color: pink;		/* 方便看效果 */
+
+			}  
 
 - display有哪些值？说明他们的作用。
-	block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
-	none        	元素不显示，并从文档流中移除。
-	inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
-	inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
-	list-item   	象块类型元素一样显示，并添加样式列表标记。
-	table       	此元素会作为块级表格来显示。
-	inherit     	规定应该从父元素继承 display 属性的值。
+
+		block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
+
+		none        	元素不显示，并从文档流中移除。
+
+		inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
+
+		inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
+
+		list-item   	象块类型元素一样显示，并添加样式列表标记。
+
+		table       	此元素会作为块级表格来显示。
+
+		inherit     	规定应该从父元素继承 display 属性的值。
 
 - position的值relative和absolute定位原点是？
-	absolute 生成绝对定位的元素，相对于值不为 static的第一个父元素进行定位。
-	fixed    生成绝对定位的元素，相对于浏览器窗口进行定位（老IE不支持）。
-	relative 生成相对定位的元素，相对于其正常位置进行定位。
-	static   默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。
-	inherit  规定从父元素继承 position 属性的值。
+		
+		absolute 生成绝对定位的元素，相对于值不为 static的第一个父元素进行定位。
+	
+		fixed    生成绝对定位的元素，相对于浏览器窗口进行定位（老IE不支持）。
+	
+		relative 生成相对定位的元素，相对于其正常位置进行定位。
+	
+		static   默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。
+		
+		inherit  规定从父元素继承 position 属性的值。
 
 - CSS3有哪些新特性？
-	新增各种CSS选择器	（: not(.input)：所有 class 不是“input”的节点）
-  圆角		    （border-radius:8px）
-	多列布局	    （multi-column layout）
-	阴影和反射	（Shadow\Reflect）
-	文字特效		（text-shadow）
-	文字渲染		（Text-decoration）
-	线性渐变		（gradient）
-	旋转		 	（transform）
-	缩放,定位,倾斜,动画,多背景
-	例如:transform:\scale(0.85,0.90)\ translate(0px,-30px)\ skew(-9deg,0deg)\Animation:
+		
+		新增各种CSS选择器	（: not(.input)：所有 class 不是“input”的节点）
+
+		圆角		    （border-radius:8px）
+
+		多列布局	    （multi-column layout）
+
+		阴影和反射	（Shadow\Reflect）
+
+		文字特效		（text-shadow）
+
+		文字渲染		（Text-decoration）
+
+		线性渐变		（gradient）
+
+		旋转		 	（transform）
+
+		缩放,定位,倾斜,动画,多背景
+
+		例如: 
+			transform:\scale(0.85,0.90)\ translate(0px,-30px)\ skew(-9deg,0deg);
+			animation: name duration timing-function delay iteration-count direction;
 
 - 请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？
-	一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。
+	
+	解释：一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。
+
 	较为复杂的布局还可以通过嵌套一个伸缩容器（flex container）来实现。
+
 	采用Flex布局的元素，称为Flex容器（flex container），简称"容器"。
+
 	它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称"项目"。
-	常规布局是基于块和内联流方向，而Flex布局是基于flex-flow流可以很方便的用来做局中，能对不同屏幕大小自适应。
-	在布局上有了比以前更加灵活的空间。
+
+	常规布局是基于块和内联流方向，而Flex布局是基于flex-flow流可以很方便的用来做局中，能对不同屏幕大小自适应，在布局上有了比以前更加灵活的空间。
+
 	具体：http://www.w3cplus.com/css3/flexbox-basics.html
 
 - 用纯CSS创建一个三角形的原理是什么？
+	
 	把上、左、右三条边隐藏掉（颜色设为 transparent）
+
 	#demo {
+
 		width: 0;
+
 		height: 0;
+
 		border-width: 20px;
+
 		border-style: solid;
+
 		border-color: transparent transparent red transparent;
+
 	}
 
-- 一个满屏 品 字布局 如何设计?
-	（1）上面的div宽100%，
-	（2）下面的两个div分别宽50%，
-	（3）用float或者inline使其不换行即可
-
 - 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？
+	
 	* png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.
-  * 浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。
-  * IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。
-		浮动ie产生的双倍距离 #box{ float:left; width:10px; margin:0 0 0 100px;}
-		这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)
+  
+	* 浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。
+  
+	* IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。
+	
+		浮动ie产生的双倍距离 #box{ float:left; width:10px; margin:0 0 0 100px;}，这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)
+
 	* IE下的背景颜色
+		
 		首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。
+
 		接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。
+
 		.bb {
+
 			background-color:red;/*所有识别*/
+
 			background-color:#00deff\9; /*IE6、7、8识别*/
+
 			+background-color:#a200ff;/*IE6、7识别*/
+
 			_background-color:#1e0bd1;/*IE6识别*/
+
 		}
+	
 	* 获取自定义属性
-    IE下可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute()获取自定义属性;
+   
+	  IE下可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute()获取自定义属性;
+		
 		Firefox下,只能使用getAttribute()获取自定义属性。
+
 		解决方法：统一通过getAttribute()获取自定义属性。
+
 	* even对象
-  	IE下even对象有x,y属性，但是没有pageX,pageY属性;
-    Firefox下event对象有pageX,pageY属性,但是没有x,y属性。
+  	
+		IE下even对象有x,y属性，但是没有pageX,pageY属性;
+   
+	  Firefox下event对象有pageX,pageY属性,但是没有x,y属性。
+		
 		解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。
+
 	* Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示,
+		
 		可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决。
-	* 超链接hover样式：访问过后hover样式就不出现了，
-  	原因：被点击访问过的超链接样式不再具有hover和active了
+
+	* 超链接hover样式：访问过后hover样式就不出现了
+  	
+		原因：被点击访问过的超链接样式不再具有hover和active了
+		
 		解决方法：改变CSS属性的排列顺序（L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}）
 
 - li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
-	行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。
+  
+		行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。
 
 - 为什么要初始化CSS样式
-	（1）因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
-	（2）当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。
-	（3）最简单的初始化方法： * {padding: 0; margin: 0;} （强烈不建议）
-	（4）淘宝的样式初始化代码：
-		body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
-		body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
-		h1, h2, h3, h4, h5, h6{ font-size:100%; }
-		address, cite, dfn, em, var { font-style:normal; }
-		code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
-		small{ font-size:12px; }
-		ul, ol { list-style:none; }
-		a { text-decoration:none; }
-		a:hover { text-decoration:underline; }
-		sup { vertical-align:text-top; }
-		sub{ vertical-align:text-bottom; }
-		legend { color:#000; }
-		fieldset, img { border:0; }
-		button, input, select, textarea { font-size:100%; }
-		table { border-collapse:collapse; border-spacing:0; }
+		
+		（1）因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
+		
+		（2）当然，初始化样式会对SEO有一定的影响，但鱼和熊掌不可兼得，但力求影响最小的情况下初始化。
+		
+		（3）最简单的初始化方法： * {padding: 0; margin: 0;} （强烈不建议）
+		
+		（4）淘宝的样式初始化代码：
+		
+			body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+			
+			body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+		
+			h1, h2, h3, h4, h5, h6{ font-size:100%; }
+			
+			address, cite, dfn, em, var { font-style:normal; }
+			
+			code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+			
+			small{ font-size:12px; }
+			
+			ul, ol { list-style:none; }
+			
+			a { text-decoration:none; }
+		
+			a:hover { text-decoration:underline; }
+		
+			sup { vertical-align:text-top; }
+			
+			sub{ vertical-align:text-bottom; }
+			
+			legend { color:#000; }
+			
+			fieldset, img { border:0; }
+			
+			button, input, select, textarea { font-size:100%; }
+			
+			table { border-collapse:collapse; border-spacing:0; }
 
 - absolute的containing block(容器块)计算方式跟正常流有什么不同？
+		
 		无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：
+		
 			1）若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；
+		
 			2）否则,则由这个祖先元素的 padding box 构成。
 		如果都找不到，则为 initial containing block。
+		
 		补充：
-   		1）static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）
+   	
+		 	1）static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）
+			
 			2）absolute: 向上找最近的定位为absolute/relative的元素
+			
 			3）fixed: 它的containing block一律为根元素(html/body)，根元素也是initial containing block
 
 - CSS里的visibility属性有个collapse属性值是干嘛用的？在不同浏览器下以后什么区别？
-	对于普通元素visibility:collapse;会将元素完全隐藏,不占据页面布局空间,与display:none;表现相同.
-	如果目标元素为table,visibility:collapse;将table隐藏,但是会占据页面布局空间.
-	仅在Firefox下起作用,IE会显示元素,Chrome会将元素隐藏,但是占据空间.
+		
+		对于普通元素visibility:collapse;会将元素完全隐藏,不占据页面布局空间,与display:none;表现相同.
+		
+		如果目标元素为table,visibility:collapse;将table隐藏,但是会占据页面布局空间.
+	
+		仅在Firefox下起作用,IE会显示元素,Chrome会将元素隐藏,但是占据空间.
 
 - position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？
-	如果元素的display为none,那么元素不被渲染,position,float不起作用；
-	如果元素拥有position:absolute;或者position:fixed;属性那么元素将为绝对定位,float不起作用；
-	如果元素float属性不是none,元素会脱离文档流,根据float属性值来显示.有浮动,绝对定位,inline-block属性的元素,margin不会和垂直方向上的其他元素margin折叠.
+	
+		如果元素的display为none,那么元素不被渲染,position,float不起作用；
+		
+		如果元素拥有position:absolute;或者position:fixed;属性那么元素将为绝对定位,float不起作用；
+		
+		如果元素float属性不是none,元素会脱离文档流,根据float属性值来显示.有浮动,绝对定位,inline-block属性的元素,margin不会和垂直方向上的其他元素margin折叠.
 	
 - 对BFC规范(块级格式化上下文：block formatting context)的理解？
-	（W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。）
-	一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。
-	不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。
+		
+		（W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。）
+	
+		一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。
+		
+		不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。
 
-- 请解释一下为什么需要清除浮动？清除浮动的方式
-	清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示。
-	（1）父级div定义height；
-	（2）父级div 也一起浮动；
-	（3）常规的使用一个class；
-			.clearfix::before, .clearfix::after {
-				content: " ";
-				display: table;
-			}
-			.clearfix::after {
-				clear: both;
-			}
-			.clearfix {
-				*zoom: 1;
-			}
-	（4）SASS编译的时候，浮动元素的父级div定义伪类:after
-			&::after,&::before{
-				content: " ";
-				visibility: hidden;
-				display: block;
-				height: 0;
-				clear: both;
-			}
-		解析原理：
-		1) display:block 使生成的元素以块级元素显示,占满剩余空间;
-		2) height:0 避免生成内容破坏原有布局的高度。
-		3) visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;
-		4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,一丝冰凉是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙；
-		5）zoom：1 触发IE hasLayout。
-		通过分析发现，除了clear：both用来闭合浮动的，其他代码无非都是为了隐藏掉content生成的内容，这也就是其他版本的闭合浮动为什么会有font-size：0，line-height：0。
+- 请解释一下为什么需要清除浮动？清除浮动的方式？
+	
+		清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示。
+		
+		（1）父级div定义height；
+		
+		（2）父级div也一起浮动；
+		
+		（3）常规的使用一个class；
 
-- 什么是外边距合并？
-	外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
-	合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
-	w3school介绍网址： http://www.w3school.com.cn/css/css_margin_collapsing.asp
+				.clearfix::before, .clearfix::after {
+
+					content: " ";
+
+					display: table;
+
+				}
+
+				.clearfix::after {
+
+					clear: both;
+
+				}
+
+				.clearfix {
+
+					*zoom: 1;
+
+				}
+
+		（4）SASS编译的时候，浮动元素的父级div定义伪类:after
+
+				&::after,&::before{
+
+					content: " ";
+
+					visibility: hidden;
+
+					display: block;
+
+					height: 0;
+
+					clear: both;
+
+				}
+
+			解析原理：
+			
+			1) display:block 使生成的元素以块级元素显示,占满剩余空间;
+			
+			2) height:0 避免生成内容破坏原有布局的高度。
+		
+			3) visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;
+			
+			4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,一丝冰凉是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙；
+		
+			5）zoom：1 触发IE hasLayout。
+			
+			通过分析发现，除了clear：both用来闭合浮动的，其他代码无非都是为了隐藏掉content生成的内容，这也就是其他版本的闭合浮动为什么会有font-size：0，line-height：0。
 
 - zoom:1的清除浮动原理?
+	
 	原理：
+		
 		当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。
+	
 	清除浮动，触发hasLayout；
+	
 		Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。
+		
 		譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。
+
 	补充：
-		Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。
+	
+		Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现
+		
+		在 CSS 3.0 规范草案中。
+	
 		目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？
+		
 		可以通过css3里面的动画属性scale进行缩放。
 
-- 移动端的布局用过媒体查询吗？
-	假设你现在正用一台显示设备来阅读这篇文章，同时你也想把它投影到屏幕上，或者打印出来，
-	而显示设备、屏幕投影和打印等这些媒介都有自己的特点，CSS就是为文档提供在不同媒介上展示的适配方法
-	<!-- link元素中的CSS媒体查询 -->
-	当媒体查询为真时，相关的样式表或样式规则会按照正常的级联规被应用。
-	当媒体查询返回假， <link> 标签上带有媒体查询的样式表 仍将被下载 （只不过不会被应用）。
-	<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
-	<!-- 样式表中的CSS媒体查询 -->
-	包含了一个媒体类型和至少一个使用 宽度、高度和颜色等媒体属性来限制样式表范围的表达式。
-	CSS3加入的媒体查询使得无需修改内容便可以使样式应用于某些特定的设备范围。
-	<style>
-		@media (min-width: 700px) and (orientation: landscape){
-		  .sidebar {
-		    display: none;
-		  }
-		}
-	</style>
+- 什么是外边距合并？
+		
+		外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
+		
+		合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
+		
+		w3school介绍网址： http://www.w3school.com.cn/css/css_margin_collapsing.asp
 
-- 使用 CSS 预处理器吗？喜欢那个？
-	SASS、LESS (SASS、LESS没有本质区别)
+
+- 移动端的布局用过媒体查询吗？
+	
+		假设你现在正用一台显示设备来阅读这篇文章，同时你也想把它投影到屏幕上，或者打印出来，而显示设备、屏幕投影和打印等这些媒介都有自己的特点，CSS就是为文档提供在不同媒介上展示的适配方法
+	
+		<!-- link元素中的CSS媒体查询 -->
+	
+		当媒体查询为真时，相关的样式表或样式规则会按照正常的级联规被应用。
+		
+		当媒体查询返回假， <link> 标签上带有媒体查询的样式表 仍将被下载 （只不过不会被应用）。
+		
+		<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
+		
+		<!-- 样式表中的CSS媒体查询 -->
+		
+		包含了一个媒体类型和至少一个使用 宽度、高度和颜色等媒体属性来限制样式表范围的表达式。
+		
+		CSS3加入的媒体查询使得无需修改内容便可以使样式应用于某些特定的设备范围。
+		
+		<style>
+
+			@media (min-width: 700px) and (orientation: landscape){
+
+				.sidebar {
+
+					display: none;
+
+				}
+
+			}
+
+		</style>
+
+- 什么是CSS 预处理器 / 后处理器？
+	
+		预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。
+		
+		后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
+
 
 - CSS优化、提高性能的方法有哪些？
-	关键选择器（key selector）。选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）；
-	如果规则拥有 ID 选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹配它们了）；
-	提取项目的通用公有样式，增强可复用性，按模块编写组件；增强项目的协同开发性、可维护性和可扩展性;
-	使用预处理工具或构建工具（gulp对css进行语法检查、自动补前缀、打包压缩、自动优雅降级）；
+	
+		关键选择器（key selector）：选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）；
+		
+		如果规则拥有ID选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹配它们了）；
+	
+		提取项目的通用公有样式，增强可复用性，按模块编写组件；增强项目的协同开发性、可维护性和可扩展性;
+	
+		使用预处理工具或构建工具（gulp对css进行语法检查、自动补前缀、打包压缩、自动优雅降级）；
 
 - 浏览器是怎样解析CSS选择器的？
+	
 	样式系统从关键选择器开始匹配，然后左移查找规则选择器的祖先元素。
+
 	只要选择器的子树一直在工作，样式系统就会持续左移，直到和规则匹配，或者是因为不匹配而放弃该规则。
 
-- 在网页中的应该使用奇数还是偶数的字体？为什么呢？
-  // TODO
-
 - margin和padding分别适合什么场景使用？
-	margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
-	margin用于布局分开元素使元素与元素互不相干；
-	padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段
+		
+		margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
+	
+		margin用于布局分开元素使元素与元素互不相干；
+	
+		padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段
 
 - 抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]
 - 元素竖向的百分比设定是相对于容器的高度吗？
@@ -606,401 +846,611 @@
   // TODO
 
 - ::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
-	单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）
-	双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法，
-	比如:first-line、:first-letter、:before、:after等，
-	而新的在CSS3中引入的伪元素则不允许再支持旧的单冒号的写法。
-	想让插入的内容出现在其它内容前，使用::before，否者，使用::after；
-	在代码顺序上，::after生成的内容也比::before生成的内容靠后。
-	如果按堆栈视角，::after生成的内容会在::before生成的内容之上
+	
+		单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）
+		
+		双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法，比如:first-line、:first-letter、:before、:after等，而新的在CSS3中引入的伪元素则不允许再支持旧的单冒号的写法。
+	
+		想让插入的内容出现在其它内容前，使用::before，否者，使用::after；
+		
+		在代码顺序上，::after生成的内容也比::before生成的内容靠后。
+		
+		如果按堆栈视角，::after生成的内容会在::before生成的内容之上
 
 - 如何修改chrome记住密码后自动填充表单的黄色背景 ？
-	input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-		background-color: rgb(250, 255, 189); /* #FAFFBD; */
-		background-image: none;
-		color: rgb(0, 0, 0);
-	}
+
+		input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+				
+			background-color: rgb(250, 255, 189); /* #FAFFBD; */
+		
+			background-image: none;
+		
+			color: rgb(0, 0, 0);
+
+		}
 
 - 你对line-height是如何理解的？
 
 - 设置元素浮动后，该元素的display值是多少？
-	自动变成了 display:block
+		
+		自动变成了 display:block
+
+- 在网页中的应该使用奇数还是偶数的字体？为什么呢？
+  	// TODO
 
 - 怎么让Chrome支持小于12px 的文字？
-	1、用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观。
-	2、使用12px及12px以上字体大小：为了兼容各大主流浏览器，建议设计美工图时候设置大于或等于12px的字体大小，为了兼容、为了代码更简单。
-	3、继续使用小于12px字体大小样式设置：如果不考虑chrome可以不用考虑兼容，同时在设置小于12px对象设置-webkit-text-size-adjust:none，做到最大兼容考虑。
+	
+		1、用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观。
+	
+		2、使用12px及12px以上字体大小：为了兼容各大主流浏览器，建议设计美工图时候设置大于或等于12px的字体大小，为了兼容、为了代码更简单。
+	
+		3、继续使用小于12px字体大小样式设置：如果不考虑chrome可以不用考虑兼容，同时在设置小于12px对象设置-webkit-text-size-adjust:none，做到最大兼容考虑。
 
 - 让页面里的字体变清晰，变细用CSS怎么做？
-	-webkit-font-smoothing: antialiased;
+	
+		-webkit-font-smoothing: antialiased;
 
 - font-style属性可以让它赋值为“oblique” oblique是什么意思？
-	倾斜的字体样式
+		
+		倾斜的字体样式
 
 - position:fixed;在ios下无效怎么处理？
-	fixed的元素是相对整个页面固定位置的，你在屏幕上滑动只是在移动这个所谓的viewport，
-	原来的网页还好好的在那，fixed的内容也没有变过位置，
-	所以说并不是iOS不支持fixed，只是fixed的元素不是相对手机屏幕固定的。
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		fixed的元素是相对整个页面固定位置的，你在屏幕上滑动只是在移动这个所谓的viewport，原来的网页还好好的在那，fixed的内容也没有变过位置，所以说并不是iOS不支持fixed，只是fixed的元素不是相对手机屏幕固定的。
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
 
 - 如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
-	多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms
+	
+		多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms
 
 - display:inline-block 什么时候会显示间隙？(携程)
-	移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
+		
+		移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
 
 - overflow: scroll时不能平滑滚动的问题怎么处理？
 	// TODO
-- 有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
 - png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
 	// TODO
-
-- 什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
-	（1）如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量，所以不如隔离开。
-	（2）因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，提高了webserver的http请求的解析速度。
-
 - style标签写在body后与body前有什么区别？
 	// TODO
-
-- 什么是CSS 预处理器 / 后处理器？
-	预处理器例如：LESS、Sass、Stylus，用来预编译Sass或less，增强了css代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的UI组件模块化开发能力，极大的提高工作效率。
-	后处理器例如：PostCSS，通常被视为在完成的样式表中根据CSS规范处理CSS，让其更有效；目前最常做的是给CSS属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。
-
 - rem布局的优缺点
 	// TODO
 
 ## <a name='js'>JavaScript</a>
+
+- 什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
+		
+		（1）如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量，所以不如隔离开。
+
+		（2）因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，提高了webserver的http请求的解析速度。
+
 - 介绍js的基本数据类型。
-	Undefined、Null、Boolean、Number、String、Symbol(ECMAScript 2015 新增创建后独一无二且不可变的数据类型 )
+		
+		Undefined、Null、Boolean、Number、String、Symbol(ECMAScript 2015 新增创建后独一无二且不可变的数据类型)
 
 -  介绍js有哪些内置对象？
-	Object 是 JavaScript 中所有对象的父对象
-	数据封装类对象：Object、Array、Boolean、Number 和 String
-	其他对象：Function、Arguments、Math、Date、RegExp、Error
-	参考：http://www.ibm.com/developerworks/cn/web/wa-objectsinjs-v1b/index.html
-
--  说几条写JavaScript的基本规范？
-	1.不要在同一行声明多个变量。
-	2.请使用 ===/!==来比较true/false或者数值
-	3.使用对象字面量替代new Array这种形式
-	4.不要使用全局函数。
-	5.Switch语句必须带有default分支
-	6.函数不应该有时候有返回值，有时候没有返回值。
-	7.For循环必须使用大括号
-	8.If语句必须使用大括号
-	9.for-in循环中的变量 应该使用let关键字明确限定作用域，从而避免作用域污染。
+		
+		Object 是 JavaScript 中所有对象的父对象
+		
+		数据封装类对象：Object、Array、Boolean、Number 和 String
+		
+		其他对象：Function、Arguments、Math、Date、RegExp、Error
+		
+		参考：http://www.ibm.com/developerworks/cn/web/wa-objectsinjs-v1b/index.html
 
 -  JavaScript原型，原型链 ? 有什么特点？
-  原型链概念:
-		每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去
-		关系：instance.constructor.prototype = instance.__proto__
-	特点：
-		JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。
-	示例：
-		function Func(){}
-		Func.prototype.name = "Sean";
-		Func.prototype.getInfo = function() {
-			return this.name;
-		}
-		var person = new Func();//现在可以参考var person = Object.create(oldObject);
-		console.log(person.getInfo());//它拥有了Func的属性和方法
-		//"Sean"
-		console.log(Func.prototype);
-		// Func { name="Sean", getInfo=function()}
+		
+		原型链概念:
+			
+			每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，于是就这样一直找下去
+			
+			关系：instance.constructor.prototype = instance.__proto__
+		
+		特点：
+			
+			JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。
+		
+		示例：
+		
+			function Func(){}
+		
+			Func.prototype.name = "Sean";
+		
+			Func.prototype.getInfo = function() {
+				return this.name;
+			}
+			
+			var person = new Func();//现在可以参考var person = Object.create(oldObject);
+			
+			console.log(person.getInfo());//它拥有了Func的属性和方法
+			
+			//"Sean"
+		
+			console.log(Func.prototype);
+			
 
 -  JavaScript有几种类型的值？，你能画一下他们的内存图吗？
-	栈：原始数据类型（Undefined，Null，Boolean，Number、String）
-	堆：引用数据类型（对象、数组和函数）
-	两种类型的区别是：存储位置不同；
-		原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
-		引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体
-	![Stated Clearly Image](http://www.w3school.com.cn/i/ct_js_value.gif)
+	
+		栈：原始数据类型（Undefined，Null，Boolean，Number、String）
+		
+		堆：引用数据类型（对象、数组和函数）
+		
+		两种类型的区别是：存储位置不同；
+		
+			原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
+		
+			引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体
+	
+		![Stated Clearly Image](http://www.w3school.com.cn/i/ct_js_value.gif)
 
-- 如何将字符串转化为数字，例如'12.3b'?
-  * parseFloat('12.3b');
-  * 正则表达式，'12.3b'.match(/(\d)+(\.)?(\d)+/g)[0] * 1, 但是这个不太靠谱，提供一种思路而已。
+- 如何将字符串转化为数字，例如'12.3b'?（与Number的区别）
+  
+	* parseFloat('12.3b');
+  
+	* 正则表达式，'12.3b'.match(/(\d)+(\.)?(\d)+/g)[0] * 1, 但是这个不太靠谱，提供一种思路而已。
 
 - 如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?
+	
 	function commafy(num){
+		
 		return num && num
+			
 			.toString()
+			
 			.replace(/(\d)(?=(\d{3})+\.)/g, function($1, $2){
 				return $2 + ',';
 			});
+	
 	}
 
 - 如何实现数组的随机排序？
+  	
 	方法一：
-		var arr = [1,2,3,4,5,6,7,8,9,10];
-		function randSort1(arr){
-			for(var i = 0,len = arr.length;i < len; i++ ){
-				var rand = parseInt(Math.random()*len);
-				var temp = arr[rand];
-				arr[rand] = arr[i];
-				arr[i] = temp;
+  	
+			var arr = [1,2,3,4,5,6,7,8,9,10];
+  	
+			function randSort1(arr){
+  		
+				for(var i = 0,len = arr.length;i < len; i++ ){
+  		
+					var rand = parseInt(Math.random()*len);
+  			
+					var temp = arr[rand];
+  			
+					arr[rand] = arr[i];
+  		
+					arr[i] = temp;
+  			
+				}
+  			
+				return arr;
+  		
 			}
-			return arr;
-		}
-		console.log(randSort1(arr));	
+  		
+			console.log(randSort1(arr));	
+  
 	方法二：
-		var arr = [1,2,3,4,5,6,7,8,9,10];
-		function randSort2(arr){
-			var mixedArray = [];
-			while(arr.length > 0){
-				var randomIndex = parseInt(Math.random()*arr.length);
-				mixedArray.push(arr[randomIndex]);
-				arr.splice(randomIndex, 1);
+  		
+			var arr = [1,2,3,4,5,6,7,8,9,10];
+  		
+			function randSort2(arr){
+  		
+				var mixedArray = [];
+  		
+				while(arr.length > 0){
+  			
+					var randomIndex = parseInt(Math.random()*arr.length);
+  			
+					mixedArray.push(arr[randomIndex]);
+  			
+					arr.splice(randomIndex, 1);
+  			}
+  		
+				return mixedArray;
+  	
 			}
-			return mixedArray;
-		}
-		console.log(randSort2(arr));
+  	
+			console.log(randSort2(arr));
+  
 	方法三：
-		var arr = [1,2,3,4,5,6,7,8,9,10];
-		arr.sort(function(){
-			return Math.random() - 0.5;
-		})
-		console.log(arr);
+  		
+			var arr = [1,2,3,4,5,6,7,8,9,10];
+  		
+			arr.sort(function(){
+  		
+				return Math.random() - 0.5;
+  		
+			})
+  		
+			console.log(arr);
 
 -  Javascript如何实现继承？
-	1、构造继承
-	2、原型继承
-	3、实例继承
-	4、拷贝继承
-	原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
-		function Parent(){
-			this.name = 'wang';
-		}
-		function Child(){
-			this.age = 28;
-		}
-		Child.prototype = new Parent();//继承了Parent，通过原型
+	
+		1、构造继承
+	
+		2、原型继承
+	
+		3、实例继承
+	
+		4、拷贝继承
 
-		var demo = new Child();
-		alert(demo.age);
-		alert(demo.name);//得到被继承的属性
+		原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
+		
+			function Parent(){
+			
+				this.name = 'wang';
+		
+			}
+		
+			function Child(){
+			
+				this.age = 28;
+		
+			}
+			
+			Child.prototype = new Parent();//继承了Parent，通过原型
 
-- JavaScript继承的几种实现方式？
-  参考：
-	[构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html)
-	[非构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html)；
+			var demo = new Child();
+			
+			alert(demo.age);
+		
+			alert(demo.name);//得到被继承的属性
+
+		参考：
+		
+			[构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html)
+			[非构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html)；
 
 -  javascript创建对象的几种方式？
+	
 	javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。
+	
 	1、对象字面量的方式
-		person={firstname:"Mark",lastname:"Yun",age:25,eyecolor:"black"};
+		
+			person={firstname:"Mark",lastname:"Yun",age:25,eyecolor:"black"};
+	
 	2、用function来模拟无参的构造函数
-		function Person(){}
+
+			function Person(){}
+			
 			var person=new Person();//定义一个function，如果使用new"实例化",该function可以看作是一个Class
+		
 			person.name="Mark";
+			
 			person.age="25";
+			
 			person.work=function(){
-			alert(person.name+" hello...");
-		}
-		person.work();
+				alert(person.name+" hello...");
+			}
+			
+			person.work();
+
 	3、用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）
-		function Pet(name,age,hobby){
+
+			function Pet(name,age,hobby){
+			
 				this.name=name;//this作用域：当前对象
+			
 				this.age=age;
+			
 				this.hobby=hobby;
+			
 				this.eat=function(){
+			
 					alert("我叫"+this.name+",我喜欢"+this.hobby+",是个程序员");
+			
 				}
-		}
-		var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
-		maidou.eat();//调用eat方法
+			
+			}
+		
+			var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
+		
+			maidou.eat();//调用eat方法
+
 	4、用工厂方式来创建（内置对象）
-		var wcDog =new Object();
-		wcDog.name="旺财";
-		wcDog.age=3;
-		wcDog.work=function(){
-			alert("我是"+wcDog.name+",汪汪汪......");
-		}
-		wcDog.work();
+		
+			var wcDog =new Object();
+		
+			wcDog.name="旺财";
+		
+			wcDog.age=3;
+		
+			wcDog.work=function(){
+		
+				alert("我是"+wcDog.name+",汪汪汪......");
+	
+			}
+		
+			wcDog.work();
+	
 	5、用原型方式来创建
-		function Dog(){
-		}
+	
+		function Dog(){}
+	
 		Dog.prototype.name="旺财";
+	
 		Dog.prototype.eat=function(){
-		alert(this.name+"是个吃货");
+		
+			alert(this.name+"是个吃货");
+	
 		}
+		
 		var wangcai =new Dog();
+		
 		wangcai.eat();
+
 	6、用混合方式来创建
+		
 		function Car(name,price){
+		
 			this.name=name;
+	
 			this.price=price;
+		
 		}
+		
 		Car.prototype.sell=function(){
+		
 			alert("我是"+this.name+"，我现在卖"+this.price+"万元");
+		
 		}
+		
 		var camry =new Car("凯美瑞",27);
+		
 		camry.sell();
 
 -  Javascript作用链域?
-	全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。
-	当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局函数，这种组织形式就是作用域链。
+		
+		全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。
+		
+		当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局函数，这种组织形式就是作用域链。
 
 -  谈谈This对象的理解。
-  this总是指向函数的直接调用者（而非间接调用者）；
-	如果有new关键字，this指向new出来的那个对象；
-	在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；
+  
+		this总是指向函数的直接调用者（而非间接调用者）；
+		
+		如果有new关键字，this指向new出来的那个对象；
+		
+		在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；
 
 -  eval是做什么的？
-	它的功能是把对应的字符串解析成JS代码并运行；
-	应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
-	由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');
+
+		它的功能是把对应的字符串解析成JS代码并运行；
+
+		应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
+		
+		由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');
 
 -  什么是window对象? 什么是document对象?
-	window对象是指浏览器打开的窗口。
-	document对象是Documentd对象（HTML 文档对象）的一个只读引用，window对象的一个属性。
+	
+		window对象是指浏览器打开的窗口。
+		
+		document对象是Documentd对象（HTML 文档对象）的一个只读引用，window对象的一个属性。
 
 -  null，undefined 的区别？
-  定义：
-		null 		表示一个对象是“没有值”的值，也就是值为“空”；
-		undefined 	表示一个变量声明了没有初始化(赋值)；
-	类型：
-		undefined不是一个有效的JSON，而null是；
-		undefined的类型(typeof)是undefined；
-		null的类型(typeof)是object；
-	用法：
-		Javascript将未赋值的变量默认值设为undefined；
-		Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
-	注意：
-		在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
-		null == undefined // true
-		null === undefined // false
-	参考阅读：[undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
+		
+		定义：
+		
+			null 		表示一个对象是“没有值”的值，也就是值为“空”；
+		
+			undefined 	表示一个变量声明了没有初始化(赋值)；
+		
+		类型：
+		
+			undefined不是一个有效的JSON，而null是；
+		
+			undefined的类型(typeof)是undefined；
+		
+			null的类型(typeof)是object；
+		
+		用法：
+			
+			Javascript将未赋值的变量默认值设为undefined；
+		
+			Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
+	
+		注意：
+			
+			在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
+		
+			null == undefined // true
+		
+			null === undefined // false
+		
+		参考阅读：[undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
 
 -  事件是？IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
-  1. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。
-  2. 事件处理机制：IE是事件冒泡、Firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件；
-  3. ev.stopPropagation();（旧ie的方法 ev.cancelBubble = true;）
+   
+	  1. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。
+    
+		2. 事件处理机制：IE是事件冒泡、Firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件；
+   
+	  3. ev.stopPropagation();（旧ie的方法 ev.cancelBubble = true;）
 
 -  什么是闭包（closure），为什么要用它？
-	闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
-	闭包的特性：
-		1.函数内再嵌套函数
-		2.内部函数可以引用外层的参数和变量
-		3.参数和变量不会被垃圾回收机制回收
-	示例一：
-		//li节点的onclick事件都能正确的弹出当前被点击的li索引
-		<ul id="testUL">
-			<li> index = 0</li>
-			<li> index = 1</li>
-			<li> index = 2</li>
-		</ul>
-		<script type="text/javascript">
-		  var nodes = document.getElementsByTagName("li");
-			for(let i = 0; i < nodes.length; i++){
-				nodes[i].onclick = (function(i) {
-					return function() {
-						console.log(i);
-					} //不用闭包的话，值每次都是4
-				})(i);
-			}
-		</script>
-	示例二：
-		执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在
-		使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源：因为say667()的内部函数的执行需要依赖say667()中的变量
-		function say667() {
-			// Local variable that ends up within closure
-			var num = 666;
-			var sayAlert = function() {
-				alert(num);
-			}
-			num++;
-			return sayAlert;
-		}
-		var saAlert = say667();
-		saAlert()//执行结果应该弹出的667
+   
+	 	闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
+   
+	 	闭包的特性：
+   	
+		 	1.函数内再嵌套函数
+   
+	 		2.内部函数可以引用外层的参数和变量
+   
+	 		3.参数和变量不会被垃圾回收机制回收
+   
+	 	示例一：
+   	
+		 	//li节点的onclick事件都能正确的弹出当前被点击的li索引
+   	
+		 	<ul id="testUL">
+   	
+		 		<li> index = 0</li>
+   	
+		 		<li> index = 1</li>
+   	
+		 		<li> index = 2</li>
+   	
+		 	</ul>
+   		
+			<script type="text/javascript">
+   		
+			  var nodes = document.getElementsByTagName("li");
+   			
+				 for(let i = 0; i < nodes.length; i++){
+   			
+				 	nodes[i].onclick = (function(i) {
+   			
+				 		return function() {
+   					
+						 	console.log(i);
+   				
+					 	} //不用闭包的话，值每次都是4
+   			
+				 	})(i);
+   		
+			 	}
+   	
+		 	</script>
+   
+	 	示例二：
+   	
+		 	执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在，使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源：因为say667()的内部函数的执行需要依赖say667()中的变量
+   		
+			function say667() {
+   			
+				 // Local variable that ends up within closure
+   		
+			 	var num = 666;
+   		
+			 	var sayAlert = function() {
+   		
+			 		alert(num);
+   		
+			 	}
+   			num++;
+   		
+			 	return sayAlert;
+   	
+		 	}
+   		
+			var saAlert = say667();
+   	
+		 	saAlert()//执行结果应该弹出的667
 
 -  javascript 代码中的"use strict";是什么意思 ? 使用它区别是什么？
-	use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。
-	默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;
-	全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；
-	消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;
-	提高编译器效率，增加运行速度；
-	为未来新版本的Javascript标准化做铺垫。
-
--  如何判断一个对象是否属于某个类？
-	使用instanceof （待完善）
-	if(a instanceof Person){
-			alert('yes');
-	}
+		
+		use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。
+		
+		默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;
+		
+		全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；
+		
+		消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;
+	
+		提高编译器效率，增加运行速度；
+		
+		为未来新版本的Javascript标准化做铺垫。
 
 -  new操作符具体干了什么呢?
-	1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
-	2、属性和方法被加入到 this 引用的对象中。
-	3、新创建的对象由 this 所引用，并且最后隐式的返回 this
-		var obj  = {};
-		obj.__proto__ = Base.prototype;
-		Base.call(obj);
+		
+		1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+	
+		2、属性和方法被加入到 this 引用的对象中。
+	
+		3、新创建的对象由 this 所引用，并且最后隐式的返回 this
+		
+			var obj  = {};
+		
+			obj.__proto__ = Base.prototype;
+		
+			Base.call(obj);
 
 -  用原生JavaScript的实现过什么功能吗？
 
 -  Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
+	
 	hasOwnProperty，返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。
+	
 	使用方法：
-		object.hasOwnProperty(proName)
-		其中参数object是必选项。一个对象的实例。
-		proName是必选项。一个属性名称的字符串值。
-		如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
+		
+			object.hasOwnProperty(proName)
+		
+			其中参数object是必选项。一个对象的实例。
+			
+			proName是必选项。一个属性名称的字符串值。
+		
+			如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
 
 -  JSON 的了解？
+		
 		JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。
+		
 		它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小。如：{"age":"12", "name":"back"}
+		
 		JSON字符串转换为JSON对象:
+		
 			var obj =eval('('+ str +')');
+		
 			var obj = str.parseJSON();
+		
 			var obj = JSON.parse(str);
+	
 		JSON对象转换为JSON字符串：
+		
 			var last=obj.toJSONString();
+		
 			var last=JSON.stringify(obj);
 
 - 代码解释
+ 
   `[].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)})`
-	给页面元素画网格
+
+	给页面元素画随机颜色的网格
 
 -  js延迟加载的方式有哪些？
+		
 		defer和async、动态创建DOM方式（用得最多）、按需异步载入js
 
 -  Ajax 是什么? 如何创建一个Ajax？
+	
 		ajax的全称：Asynchronous Javascript And XML。
+	
 		异步传输+js+xml。
-		所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。
+		
+		异步：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。
 
 		(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象
+
 		(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息
+
 		(3)设置响应HTTP请求状态变化的函数
+
 		(4)发送HTTP请求
+
 		(5)获取异步调用返回的数据
+
 		(6)使用JavaScript和DOM实现局部刷新
 
 - Ajax 解决浏览器缓存问题？
 
 		1、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
 
-        2、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
+		2、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
 
-        3、在URL后面加上一个随机数： "fresh=" + Math.random();。
+		3、在URL后面加上一个随机数： "fresh=" + Math.random();。
 
-        4、在URL后面加上时间戳："nowtime=" + new Date().getTime();。
+		4、在URL后面加上时间戳："nowtime=" + new Date().getTime();。
 
-        5、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
+		5、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
 
 -  同步和异步的区别?
 
 	同步的概念应该是来自于OS中关于同步的概念:不同进程为协同完成某项工作而在先后次序上调整(通过阻塞,唤醒等方式).同步强调的是顺序性.谁先谁后.异步则不存在这种顺序性.
 
-
-
 	同步：浏览器访问服务器请求，用户看得到页面刷新，重新发请求,等请求完，页面刷新，新内容出现，用户看到新内容,进行下一步操作。
 
 	异步：浏览器访问服务器请求，用户正常操作，浏览器后端进行请求。等请求完，页面不刷新，新内容也会出现，用户看到新内容。
-
-
-
-	（待完善）
 
 -  如何解决跨域问题?
 
