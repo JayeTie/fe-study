@@ -1,4 +1,4 @@
-# tie-management-platform
+# fe-study
 
 # 前端开发面试题
 
@@ -1440,9 +1440,7 @@
 
 		3、在URL后面加上一个随机数： "fresh=" + Math.random();。
 
-		4、在URL后面加上时间戳："nowtime=" + new Date().getTime();。
-
-		5、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
+		4、在URL后面加上时间戳："nowtime=" + new Date().getTime()。
 
 -  同步和异步的区别?
 
@@ -1460,10 +1458,10 @@
 
 -  服务器代理转发时，该如何处理cookie？
 
-		nginx
+	nginx
 	
 
--  模块化开发怎么做？
+-  模块化开发怎么做？ // TODO
 
 	 [ 立即执行函数](http://benalman.com/news/2010/11/immediately-invoked-function-expression/),不暴露私有成员
 
@@ -1481,8 +1479,6 @@
 		    　　　　};
 		    　　})();
 
-	（待完善）
-
 -  AMD（Modules/Asynchronous-Definition）、CMD（Common Module Definition）规范区别？
 
 	> AMD 规范在这里：https://github.com/amdjs/amdjs-api/wiki/AMD
@@ -1494,6 +1490,7 @@
 		 区别：
 
 		    1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
+   
 		    2. CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：
 
 		// CMD
@@ -1514,7 +1511,6 @@
 		    // ...
 		})
 
-
 -  requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何
 缓存的？）
 
@@ -1528,11 +1524,11 @@
 
 -  异步加载JS的方式有哪些？
 
-	      (1) defer，只支持IE
+			(1) defer，只支持IE
 
-	      (2) async：
+			(2) async：
 
-	      (3) 创建script，插入到DOM中，加载完毕后callBack
+			(3) 创建script，插入到DOM中，加载完毕后callBack
 
 - documen.write和 innerHTML的区别
 
@@ -1543,123 +1539,48 @@
 - DOM操作——怎样添加、移除、移动、复制、创建和查找节点?
 
 		（1）创建新节点
+
 		  createDocumentFragment()    //创建一个DOM片段
+
 		  createElement()   //创建一个具体的元素
+
 		  createTextNode()   //创建一个文本节点
+
 		（2）添加、移除、替换、插入
+
 		  appendChild()
+
 		  removeChild()
+
 		  replaceChild()
+
 		  insertBefore() //在已有的子节点前插入一个新的子节点
+
 		（3）查找
+
 		  getElementsByTagName()    //通过标签名称
+
 		  getElementsByName()    //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
+
 		  getElementById()    //通过元素Id，唯一性
 
 -  .call() 和 .apply() 的区别？
 
+		例子中用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4);
 
-		  例子中用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4);
+		注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。
 
-		  注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。
+		function add(a,b) { alert(a+b); }
 
-			function add(a,b)
-			{
-			    alert(a+b);
-			}
+		function sub(a,b) { lert(a-b); }
 
-			function sub(a,b)
-			{
-			    alert(a-b);
-			}
-
-			add.call(sub,3,1);
-
-
+		add.call(sub,3,1);
 
 -  数组和对象有哪些原生方法，列举一下？
 
 -  JS 怎么实现一个类。怎么实例化这个类
 
--  JavaScript中的作用域与变量声明提升？
-
 -  如何编写高性能的Javascript？
-
--  那些操作会造成内存泄漏？
-
--  JQuery的源码看过吗？能不能简单概况一下它的实现原理？
-
--  jQuery.fn的init方法返回的this指的是什么对象？为什么要返回this？
-
--  jquery中如何将数组转化为json字符串，然后再转化回来？
-
--  jQuery 的属性拷贝(extend)的实现原理是什么，如何实现深拷贝？
-
--  jquery.extend 与 jquery.fn.extend的区别？
-
-		* jquery.extend 为jquery类添加类方法，可以理解为添加静态方法
-		* jquery.fn.extend:
-			源码中jquery.fn = jquery.prototype，所以对jquery.fn的扩展，就是为jquery类添加成员函数
-		使用：
-		jquery.extend扩展，需要通过jquery类来调用，而jquery.fn.extend扩展，所有jquery实例都可以直接调用。
-
-
--  jQuery 的队列是如何实现的？队列可以用在哪些地方？
-
--  谈一下Jquery中的bind(),live(),delegate(),on()的区别？
-
--  JQuery一个对象可以同时绑定多个事件，这是如何实现的？
-
--  是否知道自定义事件。jQuery里的fire函数是什么意思，什么时候用？
-
--  jQuery 是通过哪个方法和 Sizzle 选择器结合的？（jQuery.fn.find()进入Sizzle）
-
--  针对 jQuery性能的优化方法？
-
--  Jquery与jQuery UI 有啥区别？
-
-
-		*jQuery是一个js库，主要提供的功能是选择器，属性修改和事件绑定等等。
-
-		*jQuery UI则是在jQuery的基础上，利用jQuery的扩展性，设计的插件。
-         提供了一些常用的界面元素，诸如对话框、拖动行为、改变大小行为等等
-
-
--  JQuery的源码看过吗？能不能简单说一下它的实现原理？
-
--  jquery 中如何将数组转化为json字符串，然后再转化回来？
-
-jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩展：
-
-		$.fn.stringifyArray = function(array) {
-		    return JSON.stringify(array)
-		}
-
-		$.fn.parseArray = function(array) {
-		    return JSON.parse(array)
-		}
-
-		然后调用：
-		$("").stringifyArray(array)
-
--  jQuery和Zepto的区别？各自的使用场景？
-
--  针对 jQuery 的优化方法？
-
-		*基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。
-
-		*频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。
-         比如：var str=$("a").attr("href");
-
-		*for (var i = size; i < arr.length; i++) {}
-         for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：
-         for (var i = size, length = arr.length; i < length; i++) {}
-
-
-
--  Zepto的点透问题如何解决？
-
--  jQueryUI如何自定义组件?
 
 -  需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？
 
@@ -1671,43 +1592,27 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  移动端最小触控区域是多大？
 
--  jQuery 的 slideUp动画 ，如果目标元素是被外部事件驱动, 当鼠标快速地连续触发外部元素事件, 动画会滞后的反复执行，该如何处理呢?
-
-		jquery stop(): 如：$("#div").stop().animate({width:"100px"},100);
-
 -  把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？浏览器会如何解析它们？
 
 -  移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？（click 有 300ms 延迟,为了实现safari的双击事件的设计，浏览器要知道你是不是要双击操作。）
 
--  知道各种JS框架(Angular, Backbone, Ember, React, Meteor, Knockout...)么? 能讲出他们各自的优点和缺点么?
-
--  Underscore 对哪些 JS 原生对象进行了扩展以及提供了哪些好用的函数方法？
+-  知道各种JS框架(React, Vue, Svelte, Egg)么? 能讲出他们各自的优点和缺点么?
 
 -  解释JavaScript中的作用域与变量声明提升？
 
 -  那些操作会造成内存泄漏？
 
-	    内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。
-        垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。
+		解释：内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。
 
-        setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。
+		垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。
+
+    setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。
+		
 		闭包、控制台日志、循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）
-
--  JQuery一个对象可以同时绑定多个事件，这是如何实现的？
-
-		* 多个事件同一个函数：
-			$("div").on("click mouseover", function(){});
-		* 多个事件不同函数
-			$("div").on({
-				click: function(){},
-				mouseover: function(){}
-			});
 
 -  Node.js的适用场景？
 
 -  (如果会用node)知道route, middleware, cluster, nodemon, pm2, server-side rendering么?
-
--  解释一下 Backbone 的 MVC 实现方式？
 
 - 什么是“前端路由”?什么时候适合使用“前端路由”? “前端路由”有哪些优点和缺点?
 
@@ -1715,18 +1620,7 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 		Chrome,Safari浏览器内核。
 
-- 如何测试前端代码么? 知道BDD, TDD, Unit Test么? 知道怎么测试你的前端工程么(mocha, sinon, jasmin, qUnit..)?
-
-- 前端templating(Mustache, underscore, handlebars)是干嘛的, 怎么用?
-
-- 简述一下 Handlebars 的基本用法？
-
-- 简述一下 Handlerbars 的对模板的基本处理流程， 如何编译的？如何缓存的？
-
-- 用js实现千位分隔符?(来源：[前端农民工](http://div.io/topic/744)，提示：正则+replace)
-
-
-		参考：http://www.tuicool.com/articles/ArQZfui
+- 用js实现千位分隔符?
 		function commafy(num) {
 		    return num && num
 		        .toString()
@@ -1735,8 +1629,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 		        });
 		}
 		console.log(commafy(1234567.90)); //1,234,567.90
-
-
 
 - 检测浏览器版本版本有哪些方式？
 
@@ -1760,7 +1652,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 - 我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件，会先执行冒泡还是捕获？
 
-
 - 使用JS实现获取文件扩展名？
 
 		function getFileExtension(filename) {
@@ -1774,13 +1665,18 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - Webpack热更新实现原理?
 
 		1. Webpack编译期，为需要热更新的 entry 注入热更新代码(EventSource通信)
+	
 		2. 页面首次打开后，服务端与客户端通过 EventSource 建立通信渠道，把下一次的 hash 返回前端
+	
 		3. 客户端获取到hash，这个hash将作为下一次请求服务端 hot-update.js 和 hot-update.json的hash
+	
 		4. 修改页面代码后，Webpack 监听到文件修改后，开始编译，编译完成后，发送 build 消息给客户端
+	
 		5. 客户端获取到hash，成功后客户端构造hot-update.js script链接，然后插入主文档
+	
 		6. hot-update.js 插入成功后，执行hotAPI 的 createRecord 和 reload方法，获取到 Vue 组件的 render方法，重新 render 组件， 继而实现 UI 无刷新更新。
 
-- 请介绍一下JS之事件节流？
+- 什么是JS的事件节流？
 
 - 什么是JS的函数防抖？
 
@@ -1789,17 +1685,14 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - Object.is() 与原来的比较操作符“ ===”、“ ==”的区别？
 
 		两等号判等，会在比较时进行类型转换；
+
 		三等号判等(判断严格)，比较时不进行隐式类型转换,（类型不同则会返回false）；
 
-		Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，
-		但 Object.is(NaN, NaN) 会返回 true.
-
- 		Object.is 应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。
+		Object.is 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同，但 Object.is(NaN, NaN) 会返回 true，Object.is 应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。
 
 - ES6是如何实现编译成ES5的？
 
 - css-loader的原理？
-
 
 ## <a name='other'>前端框架</a>
 
@@ -1807,25 +1700,35 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 			逻辑复杂单页应用，偏中后台管理系统，纯展示性的UI页面不合适、
 
-- 描述一下React 生命周期
+- React 生命周期
 
-			渲染过程调用到的生命周期函数，主要几个要知道；
-			* constructor 
-			* getInitialState 
-			* getDefaultProps 
-			* componentWillMount 
-			* render 
-			* componentDidMount 
+		1、渲染过程调用到的生命周期函数，主要：
 
-			更新过程
+    	* constructor
 
-			* componentWillReceiveProps 
-			* shouldComponentUpdate 
-			* componentWillUpdate 
-			* render 
-			* componentDidUpdate 
+    	* getInitialState
+    
+    	* getDefaultProps
+    	
+  		* componentWillMount
+    
+  		* render
+    	
+  		* componentDidMount
 
-			卸载过程
+		2、更新过程
+
+			* componentWillReceiveProps
+
+			* shouldComponentUpdate
+			
+			* componentWillUpdate
+			
+			* render
+			
+			* componentDidUpdate
+
+		3、卸载过程
 
 			componentWillUnmount
 
@@ -1833,29 +1736,28 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - 实现组件有哪些方式？
 
 		React.createClass 使用API来定义组件
+		
 		React ES6 class component 用 ES6 的class 来定义组件
+		
 		Functional stateless component 通过函数定义无状态组件
-
 
 - 应该在React生命周期的什么阶段发出ajax请求，为什么？
 
-				AJAX请求应在 componentDidMount函数 进行请求。
+		AJAX请求应在 componentDidMount函数 进行请求。
 
 - shouldComponentUpdate函数有什么作用？
 
-				shouldComponentUpdate是一个允许我们自行决定某些组件（以及他们的子组件）是否进行更新的生命周期函数，reconciliation的最终目的是尽可能以最有效的方式去根据新的state更新UI，
-				如果你已经知道UI的哪些状态无需进行改变，就没必要去让React去判断它是否该改变。 让shouldComponentUpdate返回falss, React就会让当前的组件和其子组件保持不变。
+		shouldComponentUpdate是一个允许我们自行决定某些组件（以及他们的子组件）是否进行更新的生命周期函数，reconciliation的最终目的是尽可能以最有效的方式去根据新的state更新UI，
+		
+		如果你已经知道UI的哪些状态无需进行改变，就没必要去让React去判断它是否该改变。 让shouldComponentUpdate返回false, React就会让当前的组件和其子组件保持不变。
 
 - 当组件的setState函数被调用之后，发生了什么？
 
-				React会做的第一件事就是把你传递给setState的参数对象合并到组件原先的state。这个事件会导致一个“reconciliation”（调和）的过程。reconciliation的最终目标就是，
-				尽可能以最高效的方法，去基于新的state来更新UI。为了达到这个目的，React会构建一个React元素树（你可以把这个想象成一个表示UI的一个对象）。一旦这个树构建完毕，
-				React为了根据新的state去决定UI要怎么进行改变，它会找出这棵新树和旧树的不同之处。React能够相对精确地找出哪些位置发生了改变以及如何发生了什么变化，
-				并且知道如何只通过必要的更新来最小化重渲染。
+		React会做的第一件事就是把你传递给setState的参数对象合并到组件原先的state。这个事件会导致一个“reconciliation”（调和）的过程。reconciliation的最终目标就是，尽可能以最高效的方法，去基于新的state来更新UI。为了达到这个目的，React会构建一个React元素树（你可以把这个想象成一个表示UI的一个对象）。一旦这个树构建完毕，React为了根据新的state去决定UI要怎么进行改变，它会找出这棵新树和旧树的不同之处。React能够相对精确地找出哪些位置发生了改变以及如何发生了什么变化，并且知道如何只通过必要的更新来最小化重渲染。
 
 - 为什么循环产生的组件中要利用上key这个特殊的prop？
 
-				Keys负责帮助React跟踪列表中哪些元素被改变/添加/移除。React利用子元素的key在比较两棵树的时候，快速得知一个元素是新的还是刚刚被移除。没有keys，React也就不知道当前哪一个的item被移除了。
+		Keys负责帮助React跟踪列表中哪些元素被改变/添加/移除。React利用子元素的key在比较两棵树的时候，快速得知一个元素是新的还是刚刚被移除。没有keys，React也就不知道当前哪一个的item被移除了。
 
 - React-router 路由的实现原理？
 
@@ -1865,25 +1767,25 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 - refs 是什么?
 
-			Refs是能访问DOM元素或组件实例的一个函数；
+		Refs是能访问DOM元素或组件实例的一个函数；
 
 - React为什么自己定义一套事件体系呢，与浏览器原生事件体系有什么关系？
 
 - 什么时候应该选择用class实现一个组件，什么时候用一个函数实现一个组件？
 
-			组件用到了state或者用了生命周期函数，那么就该使用Class component。其他情况下，应使用Functional component。
+		组件用到了state或者用了生命周期函数，那么就该使用Class component。其他情况下，应使用Functional component。
 
 - 什么是HoC（Higher-Order Component）？适用于什么场景？
 
-			高阶组件就是一个 React 组件包裹着另外一个 React 组件
+		高阶组件就是一个 React 组件包裹着另外一个 React 组件
 
 - 并不是父子关系的组件，如何实现相互的数据通信？
 
-			使用父组件，通过props将变量传入子组件 （如通过refs，父组件获取一个子组件的方法，简单包装后，将包装后的方法通过props传入另一个子组件 ）
+		使用父组件，通过props将变量传入子组件（如通过refs，父组件获取一个子组件的方法，简单包装后，将包装后的方法通过props传入另一个子组件）
 
 - 用过 React 技术栈中哪些数据流管理库？
 
-			Redux\Dva
+		Redux\Dva
 
 - Redux是如何做到可预测呢？
 
@@ -2023,103 +1925,27 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 			404 Not Found  	找不到如何与 URI 相匹配的资源。
 			500 Internal Server Error  最常见的服务器端错误。
 			503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
-		完整版
-		  1**(信息类)：表示接收到请求并且继续处理
-			100——客户必须继续发出请求
-			101——客户要求服务器根据请求转换HTTP协议版本
-
-		  2**(响应成功)：表示动作被成功接收、理解和接受
-			200——表明该请求被成功地完成，所请求的资源发送回客户端
-			201——提示知道新文件的URL
-			202——接受和处理、但处理未完成
-			203——返回信息不确定或不完整
-			204——请求收到，但返回信息为空
-			205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件
-			206——服务器已经完成了部分用户的GET请求
-
-		  3**(重定向类)：为了完成指定的动作，必须接受进一步处理
-			300——请求的资源可在多处得到
-			301——本网页被永久性转移到另一个URL
-			302——请求的网页被转移到一个新的地址，但客户访问仍继续通过原始URL地址，重定向，新的URL会在response中的Location中返回，浏览器将会使用新的URL发出新的Request。
-			303——建议客户访问其他URL或访问方式
-			304——自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用
-			305——请求的资源必须从服务器指定的地址得到
-			306——前一版本HTTP中使用的代码，现行版本中不再使用
-			307——申明请求的资源临时性删除
-
-		  4**(客户端错误类)：请求包含错误语法或不能正确执行
-			400——客户端请求有语法错误，不能被服务器所理解
-			401——请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用
-				HTTP 401.1 - 未授权：登录失败
-				HTTP 401.2 - 未授权：服务器配置问题导致登录失败
-				HTTP 401.3 - ACL 禁止访问资源
-				HTTP 401.4 - 未授权：授权被筛选器拒绝
-				HTTP 401.5 - 未授权：ISAPI 或 CGI 授权失败
-			402——保留有效ChargeTo头响应
-			403——禁止访问，服务器收到请求，但是拒绝提供服务
-				HTTP 403.1 禁止访问：禁止可执行访问
-				HTTP 403.2 - 禁止访问：禁止读访问
-				HTTP 403.3 - 禁止访问：禁止写访问
-				HTTP 403.4 - 禁止访问：要求 SSL
-				HTTP 403.5 - 禁止访问：要求 SSL 128
-				HTTP 403.6 - 禁止访问：IP 地址被拒绝
-				HTTP 403.7 - 禁止访问：要求客户证书
-				HTTP 403.8 - 禁止访问：禁止站点访问
-				HTTP 403.9 - 禁止访问：连接的用户过多
-				HTTP 403.10 - 禁止访问：配置无效
-				HTTP 403.11 - 禁止访问：密码更改
-				HTTP 403.12 - 禁止访问：映射器拒绝访问
-				HTTP 403.13 - 禁止访问：客户证书已被吊销
-				HTTP 403.15 - 禁止访问：客户访问许可过多
-				HTTP 403.16 - 禁止访问：客户证书不可信或者无效
-				HTTP 403.17 - 禁止访问：客户证书已经到期或者尚未生效
-			404——一个404错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的URL
-			405——用户在Request-Line字段定义的方法不允许
-			406——根据用户发送的Accept拖，请求资源不可访问
-			407——类似401，用户必须首先在代理服务器上得到授权
-			408——客户端没有在用户指定的饿时间内完成请求
-			409——对当前资源状态，请求不能完成
-			410——服务器上不再有此资源且无进一步的参考地址
-			411——服务器拒绝用户定义的Content-Length属性请求
-			412——一个或多个请求头字段在当前请求中错误
-			413——请求的资源大于服务器允许的大小
-			414——请求的资源URL长于服务器允许的长度
-			415——请求资源不支持请求项目格式
-			416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段
-			417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求长。
-
-		  5**(服务端错误类)：服务器不能正确执行一个正确的请求
-			HTTP 500 - 服务器遇到错误，无法完成请求
-			HTTP 500.100 - 内部服务器错误 - ASP 错误
-			HTTP 500-11 服务器关闭
-			HTTP 500-12 应用程序重新启动
-			HTTP 500-13 - 服务器太忙
-			HTTP 500-14 - 应用程序无效
-			HTTP 500-15 - 不允许请求 global.asa
-			Error 501 - 未实现
-		  HTTP 502 - 网关错误
-		  HTTP 503：由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常
 
 - 一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）
-	注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，
-	而高手可以根据自己擅长的领域自由发挥，从URL规范、HTTP协议、DNS、CDN、数据库查询、
-	到浏览器流式解析、CSS规则构建、layout、paint、onload/domready、JS执行、JS API绑定等等；
-	详细版：
-		1、浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;
-		2、调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;
-		3、通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;
-		4、进行HTTP协议会话，客户端发送报头(请求报头);
-		5、进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;
-		6、进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;
-		7、处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;
-		8、浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;
-		9、文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;
-		10、页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成。
-	简洁版：
-	浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；
-	服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；
-	浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；
-	载入解析到的资源文件，渲染页面，完成。
+		注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，
+		而高手可以根据自己擅长的领域自由发挥，从URL规范、HTTP协议、DNS、CDN、数据库查询、
+		到浏览器流式解析、CSS规则构建、layout、paint、onload/domready、JS执行、JS API绑定等等；
+		详细版：
+			1、浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;
+			2、调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;
+			3、通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;
+			4、进行HTTP协议会话，客户端发送报头(请求报头);
+			5、进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;
+			6、进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;
+			7、处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;
+			8、浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;
+			9、文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;
+			10、页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成。
+		简洁版：
+		浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；
+		服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；
+		浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；
+		载入解析到的资源文件，渲染页面，完成。
 
 - 部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？
 - 从打开app到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决?
@@ -2141,7 +1967,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - 产品进行版本升级时，可能发生不兼容性问题，如何提前预防和解决？
   非覆盖式发布，API新增而不是在原来的上面修改；
   提前做好 @Deprecated的版本提示；
-- 你对加班的看法？
 - 平时如何管理你的项目？
 	先期团队必须确定好全局样式（global.css），编码模式(utf-8) 等；
 	编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行）；
@@ -2152,7 +1977,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 	图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理
 - 如何设计突发大规模并发架构？
 - 当团队人手不足，把功能代码写完已经需要加班的情况下，你会做前端代码的测试吗？
-- 说说最近最流行的一些东西吧？常去哪些网站？
 - 知道什么是SEO并且怎么优化么? 知道各种meta data的含义么?
 - 移动端（Android IOS）怎么做好用户体验?
   清晰的视觉纵线、
@@ -2175,20 +1999,18 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - 最近在学什么？能谈谈你未来3，5年给自己的规划吗？
 
 ## <a name='web'>前端学习网站</a>
-	1. 极客标签：       http://www.gbtags.com/
-	2. 码农周刊：       http://weekly.manong.io/issues/
-	3. 前端周刊：       http://www.feweekly.com/issues
-	4. 慕课网：         http://www.imooc.com/
-	5. div.io：		     http://div.io
-	6. Hacker News：   https://news.ycombinator.com/news
-	7. InfoQ：         http://www.infoq.com/
-	8. w3cplus：       http://www.w3cplus.com/
-	9. Stack Overflow：http://stackoverflow.com/
-	10.w3school：      http://www.w3school.com.cn/
-	11.mozilla：       https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
-
-## <a name='web'>文档</a>
-1. [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
-2. [CSS参考手册](http://css.doyoe.com/)
-3. [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
-4. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
+	1. [极客标签](http://www.gbtags.com/)
+	2. [码农周刊](http://weekly.manong.io/issues/)
+	3. [前端周刊](http://www.feweekly.com/issues)
+	4. [慕课网](http://www.imooc.com/)
+	5. [div.io](http://div.io)
+	6. [Hacker News](https://news.ycombinator.com/news)
+	7. [InfoQ](http://www.infoq.com/)
+	8. [w3cplus](http://www.w3cplus.com/)
+	9. [Stack Overflow](http://stackoverflow.com/)
+	10. [w3school](http://www.w3school.com.cn/)
+	11. [mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
+  12. [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
+  13. [CSS参考手册](http://css.doyoe.com/)
+  14. [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
+  15. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
