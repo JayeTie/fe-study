@@ -1680,6 +1680,9 @@
 
 - 什么是JS的函数防抖？
 
+- 精度
+  	https://blog.csdn.net/zhulin2609/article/details/53017897
+
 #### <a name='other'>ECMAScript6 相关</a>
 
 - Object.is() 与原来的比较操作符“ ===”、“ ==”的区别？
